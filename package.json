@@ -15,11 +15,11 @@
     "webpack-cli": "^3.1.2"
   },
   "dependencies": {
+    "@babel/cli": "^7.2.3",
     "@babel/core": "^7.2.2",
     "@babel/preset-env": "^7.2.3",
     "@babel/preset-react": "^7.0.0",
     "@babel/register": "^7.0.0",
-    "babel-cli": "^6.26.0",
     "babel-loader": "^8.0.4",
     "express": "^4.16.4",
     "pm2": "^3.2.4",
@@ -30,6 +30,7 @@
   "scripts": {
     "start": "pm2 start src/index.js --watch",
     "webpack": "webpack -wd",
-    "build-webpack": "webpack -p"
+    "build-webpack": "webpack -p",
+    "build-node": "babel src -d build  --copy-files"
   }
 }
