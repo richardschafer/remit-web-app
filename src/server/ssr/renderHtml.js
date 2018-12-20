@@ -14,7 +14,8 @@ export default function renderHtml(content) {
         ${content}
       </div>
 
-      <script src="/bundle.js" charset="utf-8"></script>
+      <script src="/app.js" charset="utf-8"></script>
+      <script src="/vendor.js" charset="utf-8"></script>
     </body>
     </html>
   `;
