@@ -1,0 +1,9 @@
+{
+  "name": "remit-web-app",
+  "version": "1.0.0",
+  "description": "remember-it app",
+  "main": "src/server.js",
+  "repository": "git@github.com:richardschafer/remit-web-app.git",
+  "author": "Richard Schafer <richard.schafric@gmail.com>",
+  "license": "MIT"
+}
