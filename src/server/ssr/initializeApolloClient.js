@@ -5,14 +5,13 @@ import fetch from 'node-fetch';
 
 import config from '../../config';
 
+// initialize apollo client for SSR data pre-fetching
 export default function initializeApolloClient() {
   return new ApolloClient({
     ssrMode: true,
-    // Remember that this is the interface the SSR server will use to connect to the
-    // API server, so we need to ensure it isn't firewalled, etc
     link: createHttpLink({
       uri: config.GRAPHQL_ENDPOINT_URI,
-      credentials: 'same-origin',
+      // apollo requires node-fetch to fetch data correctly.
       fetch,
     }),
     cache: new InMemoryCache(),
