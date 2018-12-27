@@ -1,7 +1,9 @@
 import express from 'express';
+import { renderToStringWithData } from 'react-apollo';
 import config from '../config';
 import renderHtml from './ssr/renderHtml';
 import renderReactApp from './ssr/renderReactApp';
+import initializeApolloClient from './ssr/initializeApolloClient';
 
 // init express app.
 const app = express();
@@ -9,9 +11,13 @@ const app = express();
 // serve static files.
 app.use(express.static('public'));
 
-app.get('/', (req, res) => {
-  const reactApp = renderReactApp();
-  const html = renderHtml(reactApp);
+app.get('/', async (req, res) => {
+  const apolloClient = initializeApolloClient();
+  const reactApp = renderReactApp(apolloClient);
+  const content = await renderToStringWithData(reactApp);
+  const initialApolloState = apolloClient.extract();
+
+  const html = renderHtml(content, initialApolloState);
 
   res.send(html);
 });
