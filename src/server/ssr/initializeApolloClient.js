@@ -6,14 +6,15 @@ import fetch from 'node-fetch';
 import config from '../../config';
 
 // initialize apollo client for SSR data pre-fetching
-export default function initializeApolloClient() {
+export default function initializeApolloClient(client = false) {
   return new ApolloClient({
     ssrMode: true,
     link: createHttpLink({
-      uri: config.GRAPHQL_ENDPOINT_URI,
+      uri: 'https://remember-it-api.herokuapp.com/', // config.GRAPHQL_ENDPOINT_URI,
       // apollo requires node-fetch to fetch data correctly.
       fetch,
     }),
-    cache: new InMemoryCache(),
+    // eslint-disable-next-line no-underscore-dangle
+    cache: client ? new InMemoryCache().restore(window.__APOLLO_STATE__) : new InMemoryCache(),
   });
 }
