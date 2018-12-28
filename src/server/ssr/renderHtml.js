@@ -6,6 +6,8 @@ export default function renderHtml(content, initialApolloState) {
     <html lang="en">
     <head>
       <meta charset="utf-8">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" />
+      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     
       <title>Remit app</title>
     </head>
