@@ -1,5 +1,5 @@
 // renders react's app in content and sets initial apollo state for store rehydratation
-export default function renderHtml(content, initialApolloState) {
+export default function renderHtml(content, initialApolloState, css) {
   return `
     <!doctype html>
 
@@ -10,6 +10,7 @@ export default function renderHtml(content, initialApolloState) {
       <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     
       <title>Remit app</title>
+      <style>${css}</style>
       <style>
           /* http://meyerweb.com/eric/tools/css/reset/ 
           v2.0 | 20110126
@@ -63,9 +64,7 @@ export default function renderHtml(content, initialApolloState) {
     </head>
     
     <body>
-      <div id="root">
-        ${content}
-      </div>
+      <div id="root" dangerouslySetInnerHTML={{ __html: ${content} }} />
 
       <script>
         window.__APOLLO_STATE__ = ${JSON.stringify(initialApolloState).replace(/</g, '\\u003c')}
