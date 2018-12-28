@@ -127,7 +127,8 @@ function Pricing(props) {
             REMember IT
           </Typography>
           <Typography variant="h6" align="center" color="textSecondary" component="p">
-            App based on Anki learning style to help you stop forgeting informations you harvest during the day.
+            App based on Anki learning style to help you stop forgeting informations you
+            harvest during the day.
           </Typography>
         </div>
         {/* End hero unit */}

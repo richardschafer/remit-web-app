@@ -6,8 +6,6 @@ import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import FormControl from '@material-ui/core/FormControl';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
 import amber from '@material-ui/core/colors/amber';
 import WarningIcon from '@material-ui/icons/Warning';
 import Input from '@material-ui/core/Input';
@@ -81,7 +79,7 @@ class Login extends React.Component {
       localStorage.setItem('googleIdToken', idToken);
       history.push('/dashboard');
     } catch (error) {
-      console.log(error);
+      // @TODO: capture and show the error
       // const errorCode = error.code;
       // const errorMessage = error.message;
       // const email = error.email;
