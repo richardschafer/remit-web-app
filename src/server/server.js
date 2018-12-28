@@ -12,12 +12,14 @@ const app = express();
 app.use(express.static('public'));
 
 app.get('/', async (req, res) => {
+  res.set('Content-Type', 'text/html');
+
   const apolloClient = initializeApolloClient();
-  const reactApp = renderReactApp(apolloClient);
-  const content = await renderToStringWithData(reactApp);
+  const { css, reactHtml } = renderReactApp(apolloClient);
+  const content = await renderToStringWithData(reactHtml);
   const initialApolloState = apolloClient.extract();
 
-  const html = renderHtml(content, initialApolloState);
+  const html = renderHtml(content, initialApolloState, css);
 
   res.send(html);
 });
