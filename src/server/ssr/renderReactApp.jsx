@@ -19,7 +19,7 @@ const renderReactApp = (client, url) => {
   const reactHtml = ReactDOMServer.renderToString(
     <JssProvider registry={sheetsRegistry} generateClassName={className}>
       <MuiThemeProvider theme={theme} sheetsManager={sheetsManager}>
-        <StaticRouter location={url}>
+        <StaticRouter location={url} context={{}}>
           <ApolloProvider client={client}>
             <App />
           </ApolloProvider>
