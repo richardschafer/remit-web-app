@@ -11,11 +11,11 @@ const app = express();
 // serve static files.
 app.use(express.static('public'));
 
-app.get('/', async (req, res) => {
+app.get('/*', async (req, res) => {
   res.set('Content-Type', 'text/html');
 
   const apolloClient = initializeApolloClient();
-  const { css, reactHtml } = renderReactApp(apolloClient);
+  const { css, reactHtml } = renderReactApp(apolloClient, req.url);
   const content = await renderToStringWithData(reactHtml);
   const initialApolloState = apolloClient.extract();
 

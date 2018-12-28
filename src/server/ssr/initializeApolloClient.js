@@ -10,7 +10,7 @@ export default function initializeApolloClient(client = false) {
   return new ApolloClient({
     ssrMode: true,
     link: createHttpLink({
-      uri: 'https://remember-it-api.herokuapp.com/', // config.GRAPHQL_ENDPOINT_URI,
+      uri: config.GRAPHQL_ENDPOINT_URI,
       // apollo requires node-fetch to fetch data correctly.
       fetch,
     }),
