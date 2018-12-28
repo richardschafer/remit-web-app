@@ -7,42 +7,52 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 
 import Template from './ui/Template';
 
+class App extends React.Component {
+  // Remove the server-side injected CSS.
+  componentDidMount() {
+    const jssStyles = document.getElementById('jss-server-side');
+    if (jssStyles && jssStyles.parentNode) {
+      jssStyles.parentNode.removeChild(jssStyles);
+    }
+  }
 
-const App = () => (
-  <Template>
-    <Query
-      query={gql`
-      query getPostById($id: ID!) {
-        getPostById(id: $id) {
-          title
-        }
-      }
-    `}
-      variables={{ id: 'Bh9Cr403AQFFImWOt9cR' }}
-    >
-      {({ data, loading, error }) => {
-        if (loading) { return <CircularProgress />; }
+  render() {
+    return (
+      <Template>
+        <Query
+          query={gql`
+            query getPostById($id: ID!) {
+              getPostById(id: $id) {
+                title
+              }
+            }
+          `}
+          variables={{ id: 'Bh9Cr403AQFFImWOt9cR' }}
+        >
+          {({ data, loading, error }) => {
+            if (loading) { return <CircularProgress />; }
 
-        if (error) { return <div>error</div>; }
+            if (error) { return <div>error</div>; }
 
-        return (
-          <div>
-            | Remit |
-            <div>
-              <span>post title: </span>
-              {data.getPostById.title}
+            return (
+              <div>
+                | Remit |
+                <div>
+                  <span>post title: </span>
+                  {data.getPostById.title}
 
-              <Button variant="contained" color="primary">
-                Hello World
-              </Button>
-            </div>
-          </div>
-        );
-      }}
+                  <Button variant="contained" color="primary">
+                    Hello World
+                  </Button>
+                </div>
+              </div>
+            );
+          }}
 
-    </Query>
-  </Template>
-
-);
+        </Query>
+      </Template>
+    );
+  }
+}
 
 export default App;
