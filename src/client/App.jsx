@@ -6,6 +6,7 @@ import Button from '@material-ui/core/Button';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 import Template from './ui/Template';
+import NavBar from './ui/NavBar';
 
 class App extends React.Component {
   // Remove the server-side injected CSS.
@@ -18,39 +19,44 @@ class App extends React.Component {
 
   render() {
     return (
-      <Template>
-        <Query
-          query={gql`
+      <Query
+        query={gql`
             query getPostById($id: ID!) {
               getPostById(id: $id) {
                 title
               }
             }
           `}
-          variables={{ id: 'Bh9Cr403AQFFImWOt9cR' }}
-        >
-          {({ data, loading, error }) => {
-            if (loading) { return <CircularProgress />; }
-
-            if (error) { return <div>error</div>; }
-
+        variables={{ id: 'Bh9Cr403AQFFImWOt9cR' }}
+      >
+        {({ data, loading, error }) => {
+          if (loading || error) {
             return (
-              <div>
-                | Remit |
-                <div>
-                  <span>post title: </span>
-                  {data.getPostById.title}
-
-                  <Button variant="contained" color="primary">
-                    Hello World
-                  </Button>
-                </div>
-              </div>
+              <Template>
+                {loading && <CircularProgress />}
+                {error && <h2>error</h2>}
+              </Template>
             );
-          }}
+          }
 
-        </Query>
-      </Template>
+          return (
+            <Template centered>
+              <NavBar />
+
+              | Remit |
+              <div>
+                <span>post title: </span>
+                {data.getPostById.title}
+              </div>
+
+              <Button variant="contained" color="primary">
+                Hello World
+              </Button>
+            </Template>
+          );
+        }}
+
+      </Query>
     );
   }
 }
