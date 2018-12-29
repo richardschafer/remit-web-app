@@ -47,6 +47,7 @@
     "start": "pm2 start src/index.js --watch",
     "webpack": "webpack -wd",
     "build-webpack": "webpack -p",
-    "build-node": "babel src -d build  --copy-files"
+    "build-node": "babel src -d build  --copy-files",
+    "postinstall": "npm run build-webpack && npm run build-node"
   }
 }
